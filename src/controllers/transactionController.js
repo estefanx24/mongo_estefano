@@ -1,8 +1,14 @@
 const Transaction = require('../models/transaction');
 
-// Crear transacción
 exports.createTransaction = async (req, res) => {
     try {
+        const { user_id, ride_id, amount, payment_method } = req.body;
+
+        // Validación de campos requeridos
+        if (!user_id || !ride_id || !amount || !payment_method) {
+            return res.status(400).json({ message: 'Todos los campos son obligatorios' });
+        }
+
         const transaction = new Transaction(req.body);
         await transaction.save();
         res.status(201).json(transaction);
@@ -21,8 +27,7 @@ exports.getTransactions = async (req, res) => {
     }
 };
 
-// Actualizar transacción
-exports.updateTransaction = async (req, res) => {
+exports.patchTransaction = async (req, res) => {
     try {
         const transaction = await Transaction.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!transaction) return res.status(404).json({ message: 'Transacción no encontrada' });
