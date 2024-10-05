@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo
+    container_name: mongo_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - app-network
+
+  api:
+    build: .
+    container_name: node_api
+    environment:
+      MONGODB_URI: mongodb://mongo:27017/transacciones
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    networks:
+      - app-network
+
+volumes:
+  mongo_data:
+
+networks:
+  app-network:
+    driver: bridge
