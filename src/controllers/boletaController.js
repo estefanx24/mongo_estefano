@@ -2,6 +2,7 @@ const Boleta = require('../models/boleta');
 
 // Crear boleta
 exports.createBoleta = async (req, res) => {
+    console.log(req.body); // Agrega este log para ver el contenido recibido
     try {
         const boleta = new Boleta(req.body);
         await boleta.save();
@@ -10,6 +11,7 @@ exports.createBoleta = async (req, res) => {
         res.status(400).json({ message: 'Error al crear boleta', error });
     }
 };
+//
 
 // Obtener todas las boletas
 exports.getBoletas = async (req, res) => {
