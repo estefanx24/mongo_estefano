@@ -24,7 +24,7 @@ exports.getBoletas = async (req, res) => {
 };
 
 // Actualizar boleta
-exports.updateBoleta = async (req, res) => {
+exports.patchBoletas = async (req, res) => {
     try {
         const boleta = await Boleta.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!boleta) return res.status(404).json({ message: 'Boleta no encontrada' });

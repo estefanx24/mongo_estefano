@@ -4,7 +4,7 @@ const boletaController = require('../controllers/boletaController');
 
 router.post('/', boletaController.createBoleta);
 router.get('/', boletaController.getBoletas);
-router.patch('/:id', boletaController.updateBoleta);
+router.patch('/:id', boletaController.patchBoletas);
 router.delete('/:id', boletaController.deleteBoleta);
 
 module.exports = router;

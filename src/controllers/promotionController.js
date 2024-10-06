@@ -22,7 +22,7 @@ exports.getPromotions = async (req, res) => {
 };
 
 // Actualizar promoción
-exports.updatePromotion = async (req, res) => {
+exports.patchPromotion = async (req, res) => {
     try {
         const promotion = await Promotion.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!promotion) return res.status(404).json({ message: 'Promoción no encontrada' });
