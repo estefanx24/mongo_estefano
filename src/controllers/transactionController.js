@@ -4,9 +4,12 @@ exports.createTransaction = async (req, res) => {
     try {
         const { user_id, ride_id, amount, payment_method } = req.body;
 
-        // Validación de campos requeridos
+        // Validación de campos requeridos y tipos correctos
         if (!user_id || !ride_id || !amount || !payment_method) {
             return res.status(400).json({ message: 'Todos los campos son obligatorios' });
+        }
+        if (typeof user_id !== 'number' || typeof ride_id !== 'number' || typeof amount !== 'number') {
+            return res.status(400).json({ message: 'Los campos user_id, ride_id y amount deben ser números' });
         }
 
         const transaction = new Transaction(req.body);
@@ -16,6 +19,7 @@ exports.createTransaction = async (req, res) => {
         res.status(400).json({ message: 'Error al crear transacción', error });
     }
 };
+
 
 // Obtener todas las transacciones
 exports.getTransactions = async (req, res) => {
@@ -41,7 +45,9 @@ exports.patchTransaction = async (req, res) => {
 exports.deleteTransaction = async (req, res) => {
     try {
         const transaction = await Transaction.findByIdAndDelete(req.params.id);
-        if (!transaction) return res.status(404).json({ message: 'Transacción no encontrada' });
+        if (!transaction) {
+            return res.status(404).json({ message: 'Transacción no encontrada' });
+        }
         res.status(200).json({ message: 'Transacción eliminada' });
     } catch (error) {
         res.status(500).json({ message: 'Error al eliminar transacción', error });
