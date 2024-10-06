@@ -16,8 +16,9 @@ services:
     container_name: node_api
     environment:
       MONGODB_URI: mongodb://mongo:27017/transacciones
+      PORT: 3002  # Cambia el puerto a 3002
     ports:
-      - "3000:3000"
+      - "3002:3002"  # Expon el puerto 3002
     depends_on:
       - mongo
     networks:

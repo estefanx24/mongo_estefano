@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
 require('dotenv').config();
 
 const transactionRoutes = require('./routes/transactionRoutes');
@@ -10,7 +9,7 @@ const boletaRoutes = require('./routes/boletaRoutes');
 const app = express();
 app.use(express.json());
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3002;  // Cambiado para que use 3002 por defecto
 
 // Conexión a MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
@@ -26,7 +25,6 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.use('/api/transacciones', transactionRoutes);
 app.use('/api/promociones', promotionRoutes);
 app.use('/api/boletas', boletaRoutes);
-
 
 // Iniciar servidor
 app.listen(PORT, () => {

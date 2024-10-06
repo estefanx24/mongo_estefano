@@ -13,8 +13,8 @@ RUN npm install
 # Copiar el código fuente
 COPY . .
 
-# Exponer el puerto
-EXPOSE 3000
+# Exponer el puerto 3002
+EXPOSE 3002
 
 # Iniciar la aplicación
 CMD ["npm", "start"]
