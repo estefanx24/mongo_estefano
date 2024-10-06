@@ -30,3 +30,6 @@ app.use('/api/boletas', boletaRoutes);
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en puerto ${PORT}`);
 });
+
+console.log('MongoDB URI:', process.env.MONGODB_URI);
+console.log('Port:', process.env.PORT);
