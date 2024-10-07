@@ -1,20 +1,20 @@
-# Imagen base
-FROM node:16
+# Usa la imagen base de Node.js
+FROM node:20
 
-# Crear directorio de trabajo
+# Establece el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copiar package.json y package-lock.json
+# Copia el package.json y package-lock.json al contenedor
 COPY package*.json ./
 
-# Instalar dependencias
+# Instala las dependencias de la aplicación
 RUN npm install
 
-# Copiar el código fuente
+# Copia el resto del código de la aplicación al contenedor
 COPY . .
 
-# Exponer el puerto 3002
-EXPOSE 3002
+# Exponemos el puerto en el que corre la API (3000 es un ejemplo)
+EXPOSE 3010
 
-# Iniciar la aplicación
+# Comando para correr la aplicación
 CMD ["npm", "start"]
