@@ -2,6 +2,7 @@ const Promotion = require('../models/promotion');
 
 // Crear promoción
 exports.createPromotion = async (req, res) => {
+    console.log('Llegó una solicitud para crear promoción');
     try {
         const promotion = new Promotion(req.body);
         await promotion.save();
